@@ -30,7 +30,6 @@ hx = httpx.NewHttpx()
 ##是否跳过证书检查
 ```go
 //当遇见证书不受信任导致无法访问开启本项
-//0是不执行302重定向 >0 执行多少次
 [object].SetInsecureSkipVerify(true)
 ```
 
