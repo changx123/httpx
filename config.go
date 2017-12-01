@@ -82,7 +82,7 @@ func (httpx *Httpx) SetCertPoolx509(b []byte) error {
 }
 
 //设置DialTLS函数
-func (httpx *Httpx) SetDialTLSTimeoutFun(f func(netw, addr string) (net.Conn, error))  {
+func (httpx *Httpx) SetDialTLSTimeOutFun(f func(netw, addr string) (net.Conn, error))  {
 	httpx.getconfigTr().DialTLS = f
 }
 
@@ -102,5 +102,5 @@ func (httpx *Httpx) SetTimeout(connTimeOut time.Duration,deadLine time.Duration)
 		c.SetDeadline(time.Now().Add(deadLine))
 		return c, nil
 	}
-	httpx.SetDialTLSTimeoutFun(f)
+	httpx.SetDialTLSTimeOutFun(f)
 }
