@@ -89,18 +89,6 @@ func (httpx *Httpx) SetDialTLSTimeOutFun(f func(netw, addr string) (net.Conn, er
 //设置超时
 //[connTimeOut 建立连接超时时间],[deadLine 发送接收数据超时时间]
 func (httpx *Httpx) SetTimeout(connTimeOut time.Duration,deadLine time.Duration) {
-	f := func(netw, addr string) (net.Conn, error) {
-		//设置建立连接超时时间
-		c, err := net.DialTimeout(netw, addr, connTimeOut)
-
-		if err != nil {
-
-			return nil, err
-
-		}
-		//设置发送接收数据超时时间
-		c.SetDeadline(time.Now().Add(deadLine))
-		return c, nil
-	}
-	httpx.SetDialTLSTimeOutFun(f)
+	httpx.getconfigTr().TLSHandshakeTimeout = connTimeOut
+	httpx.getconfigTr().ResponseHeaderTimeout = deadLine
 }
