@@ -75,7 +75,7 @@ func (httpx *Httpx) SetCertPoolx509(b []byte) error {
 	pool := x509.NewCertPool()
 	ok := pool.AppendCertsFromPEM(b)
 	if !ok {
-		return error("ok eq false")
+		return errors.New("ok eq false")
 	}
 	httpx.getConfigTls().RootCAs = pool
 	return nil
